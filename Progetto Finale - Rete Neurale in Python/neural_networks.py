@@ -21,7 +21,10 @@ class NeuralNetwork:
   
   
   def _log_loss(self, y_true, y_proba):
-    return -np.sum(np.multiply(y_true,np.log(y_proba))+np.multiply((1.0001-y_true),np.log(1.0001-y_proba)))/len(y_true)
+    loss = np.multiply(y_true,np.log(y_proba))
+    loss += np.multiply((1.0001-y_true),np.log(1.0001-y_proba))
+    loss = -np.sum(loss)/len(y_true)
+    return loss
   
   
   def _relu(self, Z):
